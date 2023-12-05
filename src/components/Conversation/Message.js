@@ -11,8 +11,7 @@ const Message = () => {
     return (
         <Stack height={"100%"}>
             <Box width={"100%"} sx={{
-                flexGrow: 1,
-                backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.default
+                backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : "#0B2537",
             }}
                 p={3}>
                 <Stack spacing={3}>

@@ -10,13 +10,27 @@ const Conversation = () => {
 
     const theme = useTheme();
     return (
-        <Stack height={"100%"} maxHeight={"100vw"} width={"auto"}>
+        <Stack height={"100vh"} maxHeight={"100vw"} width={"auto"} >
             {/* Chat Header */}
             <Header />
             {/* Msg */}
-            <Box sx={{ flexGrow: 1, overflowY: "scroll" }}>
+
+            <Stack sx={{
+                flexGrow: 1, overflowY: "scroll",
+                '&::-webkit-scrollbar': {
+                    width: '0.4em'
+                },
+                '&::-webkit-scrollbar-track': {
+                    '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+                },
+                '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: 'rgba(0,0,0,.1)',
+                    borderRadius: 2,
+                }
+            }}>
                 <Message />
-            </Box>
+            </Stack >
+
 
             {/* Chat Footer */}
             <Footer />
