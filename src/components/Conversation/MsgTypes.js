@@ -2,7 +2,10 @@ import React from "react";
 import { Box, Divider, IconButton, Link, Typography } from "@mui/material";
 import { Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { DownloadSimple, Image } from "phosphor-react";
+import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { Message_options } from "../../data";
 
 
 const DocMsg = ({ el }) => {
@@ -17,11 +20,11 @@ const DocMsg = ({ el }) => {
                 borderRadius: 1.5,
                 width: "max-content"
             }}>
-                <Stack spacing={2}>
+                <Stack spacing={2} >
                     <Stack p={2}
                         direction={"row"}
                         spacing={3}
-                        sx={{ backgroundColor: theme.palette.background.paper, borderRadius: 1 }}>
+                        sx={{ backgroundColor: theme.palette.background.paper, borderRadius: 1, alignItems: "center" }}>
                         <Image size={48} />
                         <Typography variant="caption">
                             Abstract.png
@@ -34,6 +37,7 @@ const DocMsg = ({ el }) => {
                 </Stack>
 
             </Box >
+            <MessageOptions />
         </Stack >
     )
 }
@@ -72,6 +76,7 @@ const LinkMsg = ({ el }) => {
                     </Stack>
                 </Stack>
             </Box >
+            <MessageOptions />
         </Stack >
     )
 }
@@ -108,6 +113,7 @@ const ReplyMsg = ({ el }) => {
                     </Typography>
                 </Stack>
             </Box >
+            <MessageOptions />
         </Stack >
     )
 }
@@ -135,6 +141,7 @@ const MediaMsg = ({ el }) => {
 
                 </Stack>
             </Box >
+            <MessageOptions />
         </Stack >
     )
 }
@@ -159,6 +166,8 @@ const TextMsg = ({ el }) => {
                     {el.message}
                 </Typography>
             </Box>
+            {/*Msg options */}
+            <MessageOptions />
         </Stack>
     )
 }
@@ -175,6 +184,44 @@ const Timeline = ({ el }) => {
             <Divider width="46%" />
 
         </Stack>
+    )
+}
+
+const MessageOptions = () => {
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    return (
+        <>
+            <DotsThreeVertical id="demo-positioned-button"
+                aria-controls={open ? 'demo-positioned-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+                size={20}
+            />
+            <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+
+            >
+                <Stack spacing={1} p={1}>
+                    {Message_options.map((el) => (
+                        <MenuItem onClick={handleClick}>{el.title}</MenuItem>
+                    ))}
+                </Stack>
+            </Menu>
+        </>
+
     )
 }
 
