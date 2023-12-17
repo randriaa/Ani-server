@@ -4,10 +4,13 @@ import React from "react";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import { useTheme } from "@mui/material/styles";
 import StyledBadge from "../settings/StyledBadge";
+import { ToggleSidebar } from "../../redux/slices/app";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
 
     const theme = useTheme();
+    const dispatch = useDispatch();
     return (
         <Stack>
             {/* Chat Header */}
@@ -19,7 +22,9 @@ const Header = () => {
                     boxShadow: "0px 0px 2px rgba(0,0,0,0.25)"
                 }}>
                 <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{ width: "100%", height: "100%" }}>
-                    <Stack direction={"row"} spacing={2}>
+                    <Stack onClick={() => {
+                        dispatch(ToggleSidebar());
+                    }} direction={"row"} spacing={2}>
                         <Box>
                             <StyledBadge overlap="circular"
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
